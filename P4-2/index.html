@@ -11,7 +11,7 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="js/math.js" charset="utf-8"></script>
+
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,18 +22,15 @@
     </head>
 
     <body>
-        <header>
-            <div class="text-center">
-                <h1>Sombra num plano</h1>
-            </div>
-        </header>
-        <article>
-        </article>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
+      <label for="camera">Camera:</label>
+      <input type="file" id="camera" value="" title=".cfg">
+      <label for="iluminacao">Iluminação:</label>
+      <input type="file" id="iluminacao" value="" title=".txt">
+      <label for="objeto">Objeto:</label>
+      <input type="file" id="objeto" value="" title=".byu">
+      <label for="plano">Plano:</label>
+      <input type="file" id="plano" value="" title=".byu">
+      <script src="js/Loader.js" charset="utf-8"></script>
     </body>
 
 </html>

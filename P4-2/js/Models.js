@@ -1,6 +1,7 @@
 function Ponto(){
     this.x;
     this.y;
+    this.z;
 }
 
 function Vetor(modulo, direcao){

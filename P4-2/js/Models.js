@@ -8,7 +8,7 @@ function Vetor(modulo, direcao){
     this.direcao = direcao;
 }
 
-Vetor.prototype.Norma(a){
+Vetor.prototype.Norma= function(a){
   sum = 0;
   for(i = 0; i<a.lenght; i++){
     sum = a[i]*a[i] + sum;

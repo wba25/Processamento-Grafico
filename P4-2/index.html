@@ -11,7 +11,9 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-
+        
+        
+        <script src="js/Models.js" charset="utf-8"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,15 +24,24 @@
     </head>
 
     <body>
-      <label for="camera">Camera:</label>
-      <input type="file" id="camera" value="" title=".cfg">
-      <label for="iluminacao">Iluminação:</label>
-      <input type="file" id="iluminacao" value="" title=".txt">
-      <label for="objeto">Objeto:</label>
-      <input type="file" id="objeto" value="" title=".byu">
-      <label for="plano">Plano:</label>
-      <input type="file" id="plano" value="" title=".byu">
-      <script src="js/Loader.js" charset="utf-8"></script>
+        <label for="camera">Camera:</label>
+        <input type="file" id="camera" value="" title=".cfg">
+        <label for="iluminacao">Iluminação:</label>
+        <input type="file" id="iluminacao" value="" title=".txt">
+        <label for="objeto">Objeto:</label>
+        <input type="file" id="objeto" value="" title=".byu">
+        <label for="plano">Plano:</label>
+        <input type="file" id="plano" value="" title=".byu">
     </body>
 
 </html>
+
+<script>
+    var vetor1 = new Vetor3D(3,0,1);
+    console.log("Norma: "+vetor1.norma());
+    var vetor2 = new Vetor3D(1,2,-2);
+    console.log("Produto escalar: "+vetor2.produtoInterno(vetor1));
+    console.log("Produto vetorial: ("+vetor1.produtoVetorial(vetor2).x+","+vetor1.produtoVetorial(vetor2).y+","+vetor1.produtoVetorial(vetor2).z+")"); 
+    console.log("Cosseno do Angulo: "+vetor2.cosAngulo(vetor1));      
+    console.log("Angulo: "+vetor2.angulo(vetor1)+" graus"); 
+</script>

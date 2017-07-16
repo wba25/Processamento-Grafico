@@ -20,6 +20,12 @@ Vetor3D.prototype.norma = function(){
     return Math.sqrt(Math.pow(this.x,2)+Math.pow(this.y,2)+Math.pow(this.z,2));
 };
 
+// Retorna um vetor unitario de mesmo sentido e direção do vetor original
+Vetor3D.prototype.normaliza = function(){
+    var norma = this.norma();
+    return new Vetor3D(this.x/norma,this.y/norma,this.z/norma);
+};
+
 // Calcula produto interno
 Vetor3D.prototype.produtoInterno = function(v){
     return (this.x*v.x + this.y*v.y + this.z*v.z);
@@ -44,4 +50,5 @@ Vetor3D.prototype.cosAngulo = function(v){
 // Ângulo entre 2 vetores em graus
 Vetor3D.prototype.angulo = function(v){
     return Math.acos(this.cosAngulo(v))*(180/Math.PI);
-} 
+}
+

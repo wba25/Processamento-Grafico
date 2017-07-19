@@ -152,13 +152,15 @@ public class Main extends JFrame{
 
 	public void readFiles() throws IOException{
 		// Carrega Objeto
+		String workingDir=System.getProperty("user.dir");
+
 		String objectName = fieldObj.getText();
-		Objeto.setObjeto("/home/wellington/Documents/UFPE/PG/Processamento-Grafico/P4-2/Java/src/Entradas/Objetos/"+objectName+".byu");
+		Objeto.setObjeto(workingDir+"/P4-2/Java/src/Entradas/Objetos/"+objectName+".byu");
 		System.out.println("1 -> Objeto lido e inicializado");
 
 		// Carrega Iluminação
 		String iluminacaoName = fieldLuz.getText();
-		Iluminacao.initIluminacao("/home/wellington/Documents/UFPE/PG/Processamento-Grafico/P4-2/Java/src/Entradas/"+iluminacaoName+".txt");
+		Iluminacao.initIluminacao(workingDir+"/P4-2/Java/src/Entradas/"+iluminacaoName+".txt");
 		System.out.println("2 -> Dados da cena lidos e inicializados");
 
 		// Carrega plano
@@ -166,7 +168,7 @@ public class Main extends JFrame{
 
 		// Carrega Camera
 		String cameraName = fieldCamera.getText();
-		Camera.initCamera("/home/wellington/Documents/UFPE/PG/Processamento-Grafico/P4-2/Java/src/Entradas/Cameras/"+cameraName+".cfg");
+		Camera.initCamera(workingDir+"/P4-2/Java/src/Entradas/Cameras/"+cameraName+".cfg");
 		System.out.println("4 -> Camera lida e inicializada");
 	}
 

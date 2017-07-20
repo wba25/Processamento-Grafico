@@ -8,6 +8,7 @@ import java.util.Arrays;
 import javax.swing.*;
 
 import Models.Camera;
+import Models.Plano;
 import Models.Ponto3D;
 import Models.Triangulo;
 
@@ -53,6 +54,8 @@ public class Phong extends JFrame{
 			pinte(Camera.intervalos.get(i),t.get(i).indice, i);
 		}
 
+		//printPlano(t2());
+
 		fix();
 	}
 
@@ -65,6 +68,14 @@ public class Phong extends JFrame{
 
 					int x = (int) pixel.x;
 					int y = (int) pixel.y;
+
+
+					if(Plano.existIntersecao(pixel)) {
+
+					}
+					else {
+
+					}
 
 					if(x>=0 && x<=ResX && y>=0 && y<=ResY ){
 						double[] bary = t2.get(indice).getBaryCoefs(pixel);

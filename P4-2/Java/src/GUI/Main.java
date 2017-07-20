@@ -66,7 +66,7 @@ public class Main extends JFrame{
 		labelObj.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelObj);
 
-		fieldObj = new JTextField("calice2");
+		fieldObj = new JTextField("CAT");
 		fieldObj.setBounds(80, 108, 120, 25);
 		painel.add(fieldObj);
 
@@ -75,7 +75,7 @@ public class Main extends JFrame{
 		labelCamera.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelCamera);
 
-		fieldCamera = new JTextField("calice2");
+		fieldCamera = new JTextField("CAT");
 		fieldCamera.setBounds(80, 140, 120, 25);
 		painel.add(fieldCamera);
 
@@ -93,7 +93,7 @@ public class Main extends JFrame{
 		labelPlano.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelPlano);
 
-		fieldPlanoX = new JTextField("100");
+		fieldPlanoX = new JTextField("50");
 		fieldPlanoX.setBounds(80, 200, 30, 25);
 		painel.add(fieldPlanoX);
 
@@ -102,7 +102,7 @@ public class Main extends JFrame{
 		labelX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelX);
 
-		fieldPlanoY = new JTextField("100");
+		fieldPlanoY = new JTextField("50");
 		fieldPlanoY.setBounds(130, 200, 30, 25);
 		painel.add(fieldPlanoY);
 
@@ -161,12 +161,13 @@ public class Main extends JFrame{
 		String workingDir=System.getProperty("user.dir");
 
 		String objectName = fieldObj.getText();
-		Objeto.setObjeto(workingDir+"/P4-2/Java/src/Entradas/Objetos/"+objectName+".byu");
+		//"/home/wellington/Documents/UFPE/PG/Processamento-Grafico/P4-2/Java/src/Entradas/Cameras/calice2.cfg"
+		Objeto.setObjeto(workingDir+"/src/Entradas/Objetos/"+objectName+".byu");
 		System.out.println("1 -> Objeto lido e inicializado");
 
 		// Carrega Iluminação
 		String iluminacaoName = fieldLuz.getText();
-		Iluminacao.initIluminacao(workingDir+"/P4-2/Java/src/Entradas/"+iluminacaoName+".txt");
+		Iluminacao.initIluminacao(workingDir+"/src/Entradas/"+iluminacaoName+".txt");
 		System.out.println("2 -> Dados da cena lidos e inicializados");
 
 		// Carrega plano
@@ -177,7 +178,7 @@ public class Main extends JFrame{
 
 		// Carrega Camera
 		String cameraName = fieldCamera.getText();
-		Camera.initCamera(workingDir+"/P4-2/Java/src/Entradas/Cameras/"+cameraName+".cfg");
+		Camera.initCamera(workingDir+"/src/Entradas/Cameras/"+cameraName+".cfg");
 		System.out.println("4 -> Camera lida e inicializada");
 	}
 

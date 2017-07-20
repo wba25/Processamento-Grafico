@@ -13,6 +13,12 @@ public class Reta {
         double a = (p.x - p0.x) / v.x;
         double b = (p.y - p0.y) / v.y;
         double c = (p.z - p0.z) / v.z;
-        return a == b && a == c;
+        System.out.println("---->"+a+", "+b+", "+c);
+        //return a == b && a == c;
+        return a == b;
+    }
+
+    public String toString(){
+        return "(x - "+p0.x+") / "+v.x+" = "+"(y - "+p0.y+") / "+v.y+" = "+"(z - "+p0.z+") / "+v.z+" = ";
     }
 }

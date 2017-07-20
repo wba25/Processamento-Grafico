@@ -46,6 +46,7 @@ public class Plano {
         base = Double.parseDouble(planoBase);
         altura = Double.parseDouble(planoAltura);
         Ponto3D ptnMaisBaixo = ptnmenorY();
+        ptnMaisBaixo.y += 100;
         //if (ptnMaisBaixo.z>1000) ptnMaisBaixo.z = 100;
         System.out.println("Ponto com menor Y: "+ptnMaisBaixo.x+", "+ptnMaisBaixo.y+", "+ptnMaisBaixo.z);
         int index = Objeto.vertices.size() -1;
@@ -110,7 +111,7 @@ public class Plano {
         int qtd = 0;
         for(Ponto3D ptn : pxlsPintados){
             qtd+=1;
-            System.out.println(qtd+" pixel do obj");
+            //System.out.println(qtd+" pixel do obj");
             if(l.pertence(ptn)) return true;
         }
         System.out.println("->Pixel do plano");

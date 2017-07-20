@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import Models.Camera;
 import Models.Iluminacao;
 import Models.Objeto;
+import Models.Plano;
 
 import javax.swing.border.EmptyBorder;
 
@@ -92,18 +93,23 @@ public class Main extends JFrame{
 		labelPlano.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelPlano);
 
-		fieldPlanoX = new JTextField("2");
-		fieldPlanoX.setBounds(80, 200, 20, 25);
+		fieldPlanoX = new JTextField("100");
+		fieldPlanoX.setBounds(80, 200, 30, 25);
 		painel.add(fieldPlanoX);
 
 		JLabel labelX = new JLabel(" x ");
-		labelX.setBounds(98, 201, 80, 20);
+		labelX.setBounds(110, 203, 80, 20);
 		labelX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelX);
 
-		fieldPlanoY = new JTextField("2");
-		fieldPlanoY.setBounds(115, 200, 20, 25);
+		fieldPlanoY = new JTextField("100");
+		fieldPlanoY.setBounds(130, 200, 30, 25);
 		painel.add(fieldPlanoY);
+
+		labelX = new JLabel("pxls");
+		labelX.setBounds(165, 203, 80, 20);
+		labelX.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		painel.add(labelX);
 
 		btn = new JButton("START");
 		btn.addActionListener(new ActionListener() {
@@ -162,6 +168,9 @@ public class Main extends JFrame{
 		System.out.println("2 -> Dados da cena lidos e inicializados");
 
 		// Carrega plano
+		String planoBase = fieldPlanoX.getText();
+		String planoAltura = fieldPlanoY.getText();
+		Plano.setPlano(planoBase, planoAltura);
 		System.err.println("3 -> Plano lido e inicializado");
 
 		// Carrega Camera

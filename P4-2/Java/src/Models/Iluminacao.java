@@ -9,7 +9,6 @@ import API.Util;
 
 public class Iluminacao {
 	public static Ponto3D Pl; // - Coordenadas do ponto de luz
-	public static Ponto3D Pl0; // - Coordenadas do ponto de luz
 	public static double ka; // - reflexao ambiental
 	public static Ponto3D Ia; // - vetor cor ambiental
 	public static double kd; // - constante difusa
@@ -23,25 +22,33 @@ public class Iluminacao {
 		File iluminacaoEntrada = new File(filepath);
 		BufferedReader reader = new BufferedReader(new FileReader(iluminacaoEntrada));
 
+		// Primeira linha do arquivo possue as coordenadas do ponto de luz
 		double[] luz = Util.extract(reader.readLine());
-		Iluminacao.Pl0 = new Ponto3D(luz[0],luz[1],luz[2]);
+		Iluminacao.Pl = new Ponto3D(luz[0],luz[1],luz[2]);
+		// Valor da reflexão ambiental
 		Iluminacao.ka = Double.parseDouble(reader.readLine());
+		// Vetor de cor ambiental
 		double[] cor = Util.extract(reader.readLine());
 		Iluminacao.Ia = new Ponto3D(cor[0],cor[1],cor[2]);
+		// Constante difusa
 		Iluminacao.kd = Double.parseDouble(reader.readLine());
-		double[] dif = Util.extract(reader.readLine());
-		Iluminacao.Od = new Ponto3D(dif[0],dif[1],dif[2]);
+		// Constante difusa - ajuda a derterminar a cor do objeto
+		double[] difusa = Util.extract(reader.readLine());
+		Iluminacao.Od = new Ponto3D(difusa[0],difusa[1],difusa[2]);
+		// Valor do coeficiente especular
 		Iluminacao.ks = Double.parseDouble(reader.readLine());
+		// Vetor da cor da fonte de luz
 		cor = Util.extract(reader.readLine());
 		Iluminacao.Il = new Ponto3D(cor[0],cor[1],cor[2]);
+		// Constante de rugosidade
 		Iluminacao.n = Integer.parseInt(reader.readLine());
-		reader.close();	
+		// Fecha o leitor
+		reader.close();
 	}
 	
 	public static void setIluminacao(){
-		//fazer a mudan�a de coordenadas para o sistema de vista da posi��o
-		//da fonte de luz PL,
-		Iluminacao.Pl = Util.convert(Camera.C, Iluminacao.Pl0);
+		//Mudança de coordenadas Mundial para coordenadas de vista de Pl
+		Iluminacao.Pl = Util.convert(Camera.C, Iluminacao.Pl);
 	}
 }
 

@@ -118,10 +118,10 @@ public class Phong extends JFrame{
 					g = color.getGreen();
 					b = color.getBlue();
 
-					if (z_buffer[x][y] == Double.MAX_VALUE || Math.abs(r-r2) > 60 || Math.abs(g-g2) > 60 || Math.abs(b-b2) > 60){
+					//if (z_buffer[x][y] == Double.MAX_VALUE || Math.abs(r-r2) > 60 || Math.abs(g-g2) > 60 || Math.abs(b-b2) > 60){
 						color = new Color(r2,g2,b2);
 						rgb = color.getRGB();
-					}
+					//}
 
 					objeto.setRGB(x, y, rgb);
 				}

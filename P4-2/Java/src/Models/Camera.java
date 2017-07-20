@@ -10,8 +10,14 @@ import API.ProjecaoPontos;
 import API.Util;
 
 public class Camera {
-	public static Ponto3D C, N, V, Vo, No, Vn, U;
-	public static double d, hx, hy;
+	public static Ponto3D C; // - Foco da câmera
+	public static Ponto3D N; // - Vetor N antes de normalizar
+	public static Ponto3D V; // - Vetor V antes de normalizar
+	public static Ponto3D Vo; // - Vetor V após normalizar
+	public static Ponto3D No; // - Vetor N após normalizar
+	public static Ponto3D Vn; // - Vetor V após ortonormalizar
+	public static Ponto3D U; // - Vetor U obtido através de N normalizado e V ortonormalizado (Gran-Schimit)
+	public static double d, hx, hy; // - Distancias entre a camera e o objeto
 
 	public static ArrayList<Ponto3D> verticesConvertidos;
 	public static ArrayList<Triangulo> triangulosConvertidos;
@@ -23,7 +29,7 @@ public class Camera {
 	public static void initCamera(String filepath) throws IOException{
 		//cameraName = scan.next();
 		File camera = new File(filepath);
-		System.out.println("----->"+camera.getPath());
+		//System.out.println("----->"+camera.getPath());
 		BufferedReader reader = new BufferedReader(new FileReader(camera));
 
 		//Vetor C
@@ -90,7 +96,7 @@ public class Camera {
 			
 			verticesConvertidos.add(p);
 
-			// calculam-se as proje��es dos seus v�rtices,
+			// calculam-se as projeções dos seus vértices,
 			vertices2D.add(ProjecaoPontos.projetar2D(p, Camera.d, Camera.hx, Camera.hy));
 			//System.out.println("lendo ponto "+i+" convertido em 2D: "+vertices2D.get(vertices2D.size()-1));
 			//Calcula-se o mapeamento dele para o frame

@@ -1,17 +1,22 @@
 package Models;
 
-/**
- * Created by wellington on 20/07/17.
- */
 public class Reta {
-    public static double coeficienteAngular;
+    public static Ponto3D v;
+    public static Ponto3D p0;
 
     public Reta(Ponto3D A, Ponto3D B) {
-        coeficienteAngular = (B.y - A.y) / (B.x - A.x);
+        v = A.subtract(B);
+        p0 = B;
     }
 
-    public void get(){
-        //m = yB - yA
-        //xB – xA
+    public boolean pertence(Ponto3D p){
+        double a = (p.x - p0.x) / v.x;
+        double b = (p.y - p0.y) / v.y;
+        double c = (p.z - p0.z) / v.z;
+        if(a == b) {
+            if (a == c) return true;
+            else return false;
+        }
+        else return false;
     }
 }

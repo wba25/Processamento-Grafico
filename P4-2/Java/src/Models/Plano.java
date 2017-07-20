@@ -2,6 +2,7 @@ package Models;
 
 import javafx.scene.shape.Line;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class Plano {
@@ -9,6 +10,7 @@ public class Plano {
     public static Triangulo[] triangulos;
     public static double base;
     public static double altura;
+    public static ArrayList<Ponto3D> pxlsPintados;
 
     public Plano() {
         setup();
@@ -103,12 +105,12 @@ public class Plano {
         return ptn;
     }
 
-    public static boolean existIntersecao(Ponto3D pixel) {
-        Reta l = new Reta(Iluminacao.Pl, pixel);
-
-        
-
-
+    public static boolean existIntersecao(Ponto3D pixelPlano) {
+        Reta l = new Reta(Iluminacao.Pl, pixelPlano);
+        for(Ponto3D ptn : pxlsPintados){
+            if(l.pertence(ptn)) return true;
+            else return false;
+        }
         return false;
     }
 }

@@ -47,16 +47,62 @@ public class Phong extends JFrame{
 		this.t2 = Camera.triangulos2D;
 
 		// Inicia z-buffer
-		for (double[] row: z_buffer)
+		for(double[] row: z_buffer)
 			Arrays.fill(row, Double.MAX_VALUE);
 
-		for(int i=0;i<t2.size();i++){
+		for(int i=0;i<t2.size()-2;i++){
 			pinte(Camera.intervalos.get(i),t.get(i).indice, i);
 		}
 
-		//printPlano(t2());
+		pintePlano(Camera.intervalos.get(t2.size()-1),t2.get(t2.size()-1).indice);
+		pintePlano(Camera.intervalos.get(t2.size()-2),t2.get(t2.size()-2).indice);
 
 		fix();
+	}
+
+	private void pintePlano(Ponto3D[][] intervalos, int indice) {
+		for(int i=0;i<intervalos.length;i++){
+			if(intervalos[i][0]!=null){
+				//System.out.println("x_min: "+ret[i][0].x+" x_max:"+ret[i][1].x+" y: "+ret[i][0].y);
+				for(int j= (int) intervalos[i][0].x;j<=intervalos[i][1].x;j++){
+					Ponto3D pixel = new Ponto3D(j, intervalos[i][0].y);
+
+					if(Plano.existIntersecao(pixel)){
+						// É sombra:
+						// Pintar apenas a componente ambiental
+						// Hitallo Vai que é tua!
+					}
+					else {
+						// Não é sombra
+						// Pinta-se com a equação de iluminação completa
+						int x = (int) pixel.x;
+						int y = (int) pixel.y;
+
+						if(x>=0 && x<=ResX && y>=0 && y<=ResY ){
+							double[] bary = t2.get(indice).getBaryCoefs(pixel);
+							if (bary[0] < 0 || bary[1] < 0 || bary[2] < 0) continue;
+
+							Ponto3D v1 = t.get(indice).v1;
+							Ponto3D v2 = t.get(indice).v2;
+							Ponto3D v3 = t.get(indice).v3;
+							Ponto3D p = v1.multiply(bary[0]).add(v2.multiply(bary[1])).add(v3.multiply(bary[2]));
+
+							if(x <= ResX && y <= ResY && z_buffer[x][y]>p.z && p.z>0){
+								z_buffer[x][y] = p.z;
+								Ponto3D I = p.getColor();
+								int r,g,b;
+								r = (int) Math.round(I.x);
+								g = (int) Math.round(I.y);
+								b = (int) Math.round(I.z);
+								qtdPontos++;
+								int rgb = new Color(r,g,b).getRGB();
+								objeto.setRGB(x, y, rgb);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void pinte(Ponto3D[][] intervalos, int indice, int k){
@@ -68,14 +114,6 @@ public class Phong extends JFrame{
 
 					int x = (int) pixel.x;
 					int y = (int) pixel.y;
-
-
-					if(Plano.existIntersecao(pixel)) {
-
-					}
-					else {
-
-					}
 
 					if(x>=0 && x<=ResX && y>=0 && y<=ResY ){
 						double[] bary = t2.get(indice).getBaryCoefs(pixel);
@@ -97,6 +135,7 @@ public class Phong extends JFrame{
 							qtdPontos++;
 							int rgb = new Color(r,g,b).getRGB();
 							objeto.setRGB(x, y, rgb);
+							Plano.pxlsPintados.add(pixel);
 						}
 					}
 				}

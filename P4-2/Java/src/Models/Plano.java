@@ -10,7 +10,7 @@ public class Plano {
     public static Triangulo[] triangulos;
     public static double base;
     public static double altura;
-    public static ArrayList<Ponto3D> pxlsPintados;
+    public static ArrayList<Ponto3D> pxlsPintados = new ArrayList<>();
 
     public Plano() {
         setup();
@@ -107,10 +107,13 @@ public class Plano {
 
     public static boolean existIntersecao(Ponto3D pixelPlano) {
         Reta l = new Reta(Iluminacao.Pl, pixelPlano);
+        int qtd = 0;
         for(Ponto3D ptn : pxlsPintados){
+            qtd+=1;
+            System.out.println(qtd+" pixel do obj");
             if(l.pertence(ptn)) return true;
-            else return false;
         }
+        System.out.println("->Pixel do plano");
         return false;
     }
 }

@@ -4,6 +4,7 @@ import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class Plano {
     public static Ponto3D[] pontos;
@@ -45,57 +46,60 @@ public class Plano {
         setup();
         base = Double.parseDouble(planoBase);
         altura = Double.parseDouble(planoAltura);
-        Ponto3D ptnMaisBaixo = ptnmenorY();
-        ptnMaisBaixo.y += 100;
+        Ponto3D ptnMaisBaixo = ptnmaiorY();
+        //ptnMaisBaixo.y *= -1;
+        if(ptnMaisBaixo.z > 840) ptnMaisBaixo.z = 840;
+
         //if (ptnMaisBaixo.z>1000) ptnMaisBaixo.z = 100;
-        System.out.println("Ponto com menor Y: "+ptnMaisBaixo.x+", "+ptnMaisBaixo.y+", "+ptnMaisBaixo.z);
+        //System.out.println("Ponto com menor Y: "+ptnMaisBaixo.x+", "+ptnMaisBaixo.y+", "+ptnMaisBaixo.z);
         int index = Objeto.vertices.size() -1;
 
         pontos[0] = new Ponto3D(ptnMaisBaixo.x-(base/2),ptnMaisBaixo.y,ptnMaisBaixo.z-(altura/2));
         pontos[0].indice = index;
-        System.out.println("A: "+pontos[0].x+", "+pontos[0].y+", "+pontos[0].z+". Indice: "+index);
+        //System.out.println("A: "+pontos[0].x+", "+pontos[0].y+", "+pontos[0].z+". Indice: "+index);
         index += 1;
         pontos[1] = new Ponto3D(ptnMaisBaixo.x-(base/2),ptnMaisBaixo.y,ptnMaisBaixo.z+(altura/2));
         pontos[1].indice = index;
-        System.out.println("B: "+pontos[1].x+", "+pontos[1].y+", "+pontos[1].z+". Indice: "+index);
+        //System.out.println("B: "+pontos[1].x+", "+pontos[1].y+", "+pontos[1].z+". Indice: "+index);
         index += 1;
 
         // C é simetrico à A em relação ao ptnMaisBaixo. C = 2*ptnMaisBaixo - A
         pontos[2] = new Ponto3D((2*ptnMaisBaixo.x)-pontos[0].x,ptnMaisBaixo.y,(2*ptnMaisBaixo.z)-pontos[0].z);
         pontos[2].indice = index;
-        System.out.println("C: "+pontos[2].x+", "+pontos[2].y+", "+pontos[2].z+". Indice: "+index);
+        //System.out.println("C: "+pontos[2].x+", "+pontos[2].y+", "+pontos[2].z+". Indice: "+index);
         index += 1;
 
         // D é simetrico à B em relação ao ptnMaisBaixo. D = 2*ptnMaisBaixo - B
         pontos[3] = new Ponto3D((2*ptnMaisBaixo.x)-pontos[1].x,ptnMaisBaixo.y,(2*ptnMaisBaixo.z)-pontos[1].z);
         pontos[3].indice = index;
-        System.out.println("D: "+pontos[3].x+", "+pontos[3].y+", "+pontos[3].z+". Indice: "+index);
+        //System.out.println("D: "+pontos[3].x+", "+pontos[3].y+", "+pontos[3].z+". Indice: "+index);
 
         //pontos[0] = new Ponto3D((2*ptnMaisBaixo.x)-pontos[1].x,ptnMaisBaixo.y,(2*ptnMaisBaixo.z)-pontos[1].z);
 
         // Adiciona Pontos do plano ao Objeto
         Collections.addAll(Objeto.vertices, pontos);
 
-        // Primeiro triangulo
+        // Primeiro triangulo B A D
         Triangulo t = new Triangulo(Objeto.vertices.get(index-1),Objeto.vertices.get(index-2),Objeto.vertices.get(index+1),Objeto.triangulos.size());
-        //t.v1 = new Ponto3D((2*Objeto.vertices.get(index).x)-t.v1.x,Objeto.vertices.get(index).y,(2*Objeto.vertices.get(index).z)-t.v1.z);
         Objeto.triangulos.add(t);
 
-        //System.out.println("----->"+Objeto.vertices.get(index).x+", "+Objeto.vertices.get(index).y+" ,"+Objeto.vertices.get(index).z);
-
+        /*
         System.out.println("Primeiro Triangulo: ");
         System.out.println("V1: "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v1.x+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v1.y+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v1.z);
         System.out.println("V2: "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v2.x+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v2.y+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v2.z);
         System.out.println("V3: "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v3.x+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v3.y+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v3.z);
+        */
 
-        //Segundo triangulo
+        //Segundo triangulo B D C
         t = new Triangulo(Objeto.vertices.get(index-1),Objeto.vertices.get(index+1),Objeto.vertices.get(index),Objeto.triangulos.size());
         Objeto.triangulos.add(t);
 
+        /*
         System.out.println("Segundo Triangulo: ");
         System.out.println("V1: "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v1.x+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v1.y+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v1.z);
         System.out.println("V2: "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v2.x+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v2.y+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v2.z);
         System.out.println("V3: "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v3.x+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v3.y+", "+Objeto.triangulos.get(Objeto.triangulos.size()-1).v3.z);
+        */
     }
 
     private static Ponto3D ptnmenorY() {
@@ -106,15 +110,46 @@ public class Plano {
         return ptn;
     }
 
+    private static Ponto3D ptnmaiorY() {
+        Ponto3D ptn = new Ponto3D(0,0,Double.MIN_VALUE);
+        for (Ponto3D vertice : Objeto.vertices) {
+            if(vertice.y > ptn.y) ptn = vertice;
+        }
+        return ptn;
+    }
+
+    private static Ponto3D ptnmenorX() {
+        Ponto3D ptn = new Ponto3D(0,0,Double.MAX_VALUE);
+        for (Ponto3D vertice : Objeto.vertices) {
+            if(vertice.x < ptn.x) ptn = vertice;
+        }
+        return ptn;
+    }
+
+    private static Ponto3D ptnmenorZ() {
+        Ponto3D ptn = new Ponto3D(0,0,Double.MAX_VALUE);
+        for (Ponto3D vertice : Objeto.vertices) {
+            if(vertice.z < ptn.z) ptn = vertice;
+        }
+        return ptn;
+    }
+
     public static boolean existIntersecao(Ponto3D pixelPlano) {
         Reta l = new Reta(Iluminacao.Pl, pixelPlano);
         int qtd = 0;
+
         for(Ponto3D ptn : pxlsPintados){
             qtd+=1;
             //System.out.println(qtd+" pixel do obj");
             if(l.pertence(ptn)) return true;
         }
-        System.out.println("->Pixel do plano");
+        //System.out.println(l.toString());
         return false;
+
+        /*
+        // Sombra randomica
+        Random gerador = new Random();
+        return gerador.nextInt()%2==0;
+        */
     }
 }

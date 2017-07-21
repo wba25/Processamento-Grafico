@@ -63,7 +63,6 @@ public class Phong extends JFrame{
 	private void pintePlano(Ponto3D[][] intervalos, int indice) {
 		for(int i=0;i<intervalos.length;i++){
 			if(intervalos[i][0]!=null){
-				//System.out.println("x_min: "+ret[i][0].x+" x_max:"+ret[i][1].x+" y: "+ret[i][0].y);
 				for(int j= (int) intervalos[i][0].x;j<=intervalos[i][1].x;j++){
 					Ponto3D pixel = new Ponto3D(j, intervalos[i][0].y);
 
@@ -73,7 +72,6 @@ public class Phong extends JFrame{
 					if(Plano.existIntersecao(pixel)){
 						// É sombra:
 						// Pintar apenas a componente ambiental
-						System.out.println("TEM SOMBRA!");
 						if(x>=0 && x<=ResX && y>=0 && y<=ResY ){
 							double[] bary = t2.get(indice).getBaryCoefs(pixel);
 							if (bary[0] < 0 || bary[1] < 0 || bary[2] < 0) continue;
@@ -85,13 +83,7 @@ public class Phong extends JFrame{
 
 							if(x <= ResX && y <= ResY && z_buffer[x][y]>p.z && p.z>0){
 								z_buffer[x][y] = p.z;
-								//Ponto3D I = p.getColor();
-								int r,g,b;
-								//r = (int) Math.round(I.x);
-								//g = (int) Math.round(I.y);
-								//b = (int) Math.round(I.z);
 								qtdPontos++;
-								//int rgb = new Color(r,g,b).getRGB();
 								int rgb = new Color(0,0,0).getRGB();
 								objeto.setRGB(x, y, rgb);
 							}
@@ -100,7 +92,6 @@ public class Phong extends JFrame{
 					else {
 						// Não é sombra
 						// Pinta-se com a equação de iluminação completa
-
 						if(x>=0 && x<=ResX && y>=0 && y<=ResY ){
 							double[] bary = t2.get(indice).getBaryCoefs(pixel);
 							if (bary[0] < 0 || bary[1] < 0 || bary[2] < 0) continue;
@@ -112,18 +103,13 @@ public class Phong extends JFrame{
 
 							if(x <= ResX && y <= ResY && z_buffer[x][y]>p.z && p.z>0){
 								z_buffer[x][y] = p.z;
-								//Ponto3D I = p.getColor();
-								int r,g,b;
-								//r = (int) Math.round(I.x);
-								//g = (int) Math.round(I.y);
-								//b = (int) Math.round(I.z);
 								qtdPontos++;
-								//int rgb = new Color(r,g,b).getRGB();
 								int rgb = new Color(255,255,255).getRGB();
 								objeto.setRGB(x, y, rgb);
 							}
 						}
 					}
+					System.out.println("Um pixel do plano pintado...");
 				}
 			}
 		}

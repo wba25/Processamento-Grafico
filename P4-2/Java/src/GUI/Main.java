@@ -66,7 +66,7 @@ public class Main extends JFrame{
 		labelObj.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelObj);
 
-		fieldObj = new JTextField("CAT");
+		fieldObj = new JTextField("calice2");
 		fieldObj.setBounds(80, 108, 120, 25);
 		painel.add(fieldObj);
 
@@ -75,7 +75,7 @@ public class Main extends JFrame{
 		labelCamera.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelCamera);
 
-		fieldCamera = new JTextField("CAT");
+		fieldCamera = new JTextField("calice2");
 		fieldCamera.setBounds(80, 140, 120, 25);
 		painel.add(fieldCamera);
 
@@ -93,7 +93,7 @@ public class Main extends JFrame{
 		labelPlano.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelPlano);
 
-		fieldPlanoX = new JTextField("50");
+		fieldPlanoX = new JTextField("1000");
 		fieldPlanoX.setBounds(80, 200, 30, 25);
 		painel.add(fieldPlanoX);
 
@@ -102,7 +102,7 @@ public class Main extends JFrame{
 		labelX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		painel.add(labelX);
 
-		fieldPlanoY = new JTextField("50");
+		fieldPlanoY = new JTextField("1000");
 		fieldPlanoY.setBounds(130, 200, 30, 25);
 		painel.add(fieldPlanoY);
 
